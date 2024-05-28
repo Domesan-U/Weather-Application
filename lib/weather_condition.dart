@@ -1,10 +1,10 @@
 import 'location.dart';
 import 'network.dart';
-
+import 'constant.dart';
 class WeatherCondition{
 
   Future<dynamic> getCityData(String cityName)async {
-      Network myNetworkObj = Network('https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=72f689b39169d8638078ef49bad26992&units=metric');
+      Network myNetworkObj = Network('https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=&{appid}');
       var cityData = await myNetworkObj.getNetwork();
       return cityData;
   }
@@ -12,7 +12,7 @@ class WeatherCondition{
   Future<dynamic> getWeatherData() async{
     Location myLocationObj = Location();
     var LocationData = await myLocationObj.GetCurrentLocation();
-    Network myNetworkObj = Network('https://api.openweathermap.org/data/2.5/weather?lat=${myLocationObj.latitude}&lon=${myLocationObj.longitude}&appid=72f689b39169d8638078ef49bad26992&units=metric');
+    Network myNetworkObj = Network('https://api.openweathermap.org/data/2.5/weather?lat=${myLocationObj.latitude}&lon=${myLocationObj.longitude}&appid={appid}');
     var weatherData = await myNetworkObj.getNetwork();
     return weatherData;
   }
